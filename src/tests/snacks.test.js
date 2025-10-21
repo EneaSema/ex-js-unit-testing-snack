@@ -1,4 +1,9 @@
-const { getInitials, createSlug, average } = require("../assets/js/snacks.js");
+const {
+  getInitials,
+  createSlug,
+  average,
+  isPalindrome,
+} = require("../assets/js/snacks.js");
 
 // 🏆 Snack 1
 // Creare un test che verifichi la seguente descrizione:
@@ -35,4 +40,24 @@ test("La funzione average calcola la media aritmetica di un array di numeri.", (
 
 test("La funzione createSlug sostituisce gli spazi con -.", () => {
   expect(createSlug("Titolo molto bello")).toBe("titolo-molto-bello");
+});
+
+// 🏆 Snack 5
+// Creare un test che verifichi la seguente descrizione:
+// 👉 "La funzione isPalindrome verifica se una stringa è un palindromo."
+
+// 📌 Nota: una stringa palindroma è una sequenza di caratteri che si legge uguale sia da sinistra a destra che da destra a sinistra.
+
+test("La funzione isPalindrome verifica se una stringa è un palindromo.", () => {
+  expect(isPalindrome(`otto`)).toBeTruthy();
+  expect(isPalindrome(`lupo`)).toBeFalsy();
+});
+
+// 🏆 Snack 6
+// Creare un test che verifichi la seguente descrizione:
+// 👉 "La funzione createSlug lancia un errore se il titolo è vuoto o non valido."
+
+test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido.", () => {
+  expect(() => createSlug("")).toThrow("Titolo vuoto o non valido");
+  expect(() => createSlug(null)).toThrow("Titolo vuoto o non valido");
 });
