@@ -64,4 +64,29 @@ function isPalindrome(parola) {
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione createSlug lancia un errore se il titolo è vuoto o non valido."
 
-module.exports = { getInitials, createSlug, average, isPalindrome };
+// 🏆 Snack 7
+// Crea un array di oggetti posts, in cui ogni oggetto ha le proprietà id, title e slug.
+// Creare un test che verifichi le seguenti descrizioni:
+// 👉 "La funzione findPostById restituisce il post corretto dato l’array di post e l’id"
+
+function findPostById(posts, id) {
+  if (isNaN(id)) {
+    throw new Error(`${id} non è un id`);
+  }
+  posts.array.forEach((p) => {
+    if (p.id === undefined || p.title === undefined || p.slug === undefined) {
+      throw new Error(
+        `Errore di ricerca! L'array posts non è nel formsto corretto`
+      );
+    }
+  });
+  return posts.find((p) => p.id === id) || null;
+}
+
+module.exports = {
+  getInitials,
+  createSlug,
+  average,
+  isPalindrome,
+  findPostById,
+};
