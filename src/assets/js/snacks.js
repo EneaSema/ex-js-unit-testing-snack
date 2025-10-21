@@ -16,4 +16,16 @@ function createSlug(stringa) {
   return stringa.toLowerCase();
 }
 
-module.exports = { getInitials, createSlug };
+// 🏆 Snack 3
+// Creare un test che verifichi la seguente descrizione:
+// 👉 "La funzione average calcola la media aritmetica di un array di numeri."
+
+function average(numbers) {
+  return (
+    numbers.reduce((acc, curr) => {
+      return acc + curr;
+    }, 0) / numbers.length
+  );
+}
+
+module.exports = { getInitials, createSlug, average };
