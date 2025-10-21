@@ -7,4 +7,6 @@ const { getInitials } = require("../assets/js/snacks.js");
 
 test("La funzione getInitials restituisce le iniziali di un nome completo.", () => {
   expect(getInitials("Enea Sema")).toBe("E.S.");
+  expect(getInitials("aurora sema")).toBe("A.S.");
+  expect(getInitials("Lupo  nero")).toBe("L.N.");
 });
