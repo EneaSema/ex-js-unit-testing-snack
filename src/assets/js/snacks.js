@@ -13,7 +13,7 @@ function getInitials(nomeCompleto) {
 // 👉 "La funzione createSlug restituisce una stringa in lowercase."
 
 function createSlug(stringa) {
-  return stringa.toLowerCase();
+  return stringa.toLowerCase().replaceAll(" ", "-");
 }
 
 // 🏆 Snack 3
@@ -27,5 +27,12 @@ function average(numbers) {
     }, 0) / numbers.length
   );
 }
+
+// 🏆 Snack 4
+// Creare un test che verifichi la seguente descrizione:
+// 👉 "La funzione createSlug sostituisce gli spazi con -."
+
+// 📌 Esempi:
+// createSlug("Questo è un test") → "questo-e-un-test"
 
 module.exports = { getInitials, createSlug, average };
