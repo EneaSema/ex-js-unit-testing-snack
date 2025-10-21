@@ -16,4 +16,5 @@ test("La funzione getInitials restituisce le iniziali di un nome completo.", () 
 
 test("La funzione createSlug restituisce una stringa in lowercase.", () => {
   expect(createSlug("ENEA")).toBe("enea");
+  expect(createSlug("LUPO")).toBe("lupo");
 });
