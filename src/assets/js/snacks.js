@@ -95,6 +95,15 @@ function findPostById(posts, id) {
 // Si consiglia di resettare l'array di post dopo ogni test. Ti ricordi come si fa?
 
 function addPost(posts, post) {
+  const ids = posts.map((p) => p.id);
+  const slugs = posts.map((p) => p.slug);
+  if (ids.includes(post.id)) {
+    throw new Error(`Id già presente`);
+  }
+  if (slugs.includes(post.slug)) {
+    throw new Error(`Slug già presente`);
+  }
+
   posts.push(post);
 }
 
@@ -102,6 +111,13 @@ function removePost(posts, id) {
   const index = posts.findIndex((p) => p.id === id);
   posts.splice(index, 1);
 }
+
+// 🎯 Snack 9 (Bonus)
+// Creare un test che verifichi la seguente descrizione:
+// 👉 "Se si tenta di aggiungere un post con un id o uno slug già esistente, la funzione addPost deve lanciare un errore."
+
+// 📌 Nota:
+// Gli errori devono essere chiari e distinti, es. "Slug già esistente" e “Id già esistente”.
 
 module.exports = {
   getInitials,
