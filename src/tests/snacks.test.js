@@ -77,17 +77,17 @@ beforeEach(() => {
     {
       id: 0,
       title: "title10",
-      slug: "slug1",
+      slug: "title1",
     },
     {
       id: 1,
       title: "title 20",
-      slug: "slug-2",
+      slug: "title-20",
     },
     {
       id: 2,
       title: "title-30",
-      slug: "slug 3",
+      slug: "title 3",
     },
   ];
 });
@@ -101,7 +101,7 @@ test(`La funzione findPostById restituisce il post corretto dato l’array di po
   expect(findPostById(posts, 1)).toEqual({
     id: 1,
     title: "title 20",
-    slug: "slug-2",
+    slug: "title-20",
   });
   expect(() => findPostById(posts, `ciao`)).toThrow(`ciao non è un id`);
   expect(() => findPostById([6, 9], 1)).toThrow(
@@ -150,7 +150,29 @@ test("Se si tenta di aggiungere un post con un id o uno slug già esistente, la 
     addPost(posts, {
       id: 3,
       title: "title 25",
-      slug: "slug-2",
+      slug: "title-20",
     })
   ).toThrow(`Slug già presente`);
+});
+
+// 🎯 Snack 10 (Bonus): createSlug() – Incrementare lo slug se esiste già
+// Creare un test che verifichi la seguente descrizione:
+
+// 👉 "Se viene passato un array di post come secondo argomento, la funzione createSlug incrementa di 1 se lo slug esiste già."
+
+test("Se viene passato un array di post come secondo argomento, la funzione createSlug incrementa di 1 se lo slug esiste già.", () => {
+  // {
+  //     id: 1,
+  //     title: "title 20",
+  //     slug: "slug-2",
+  //   },
+
+  expect(createSlug("title 20", posts)).toBe(`title-20-1`);
+  //  in aggiunta ad addPost
+  addPost(posts, {
+    id: 3,
+    title: "title 20",
+    slug: createSlug(`title 20`, posts),
+  });
+  expect(posts[posts.length - 1].slug).toBe(`title-20-1`);
 });

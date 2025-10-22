@@ -12,11 +12,20 @@ function getInitials(nomeCompleto) {
 // Creare un test che verifichi la seguente descrizione:
 // 👉 "La funzione createSlug restituisce una stringa in lowercase."
 
-function createSlug(stringa) {
+function createSlug(stringa, posts) {
   if (!stringa) {
     throw new Error("Titolo vuoto o non valido");
   }
-  return stringa.toLowerCase().replaceAll(" ", "-");
+  let slug = stringa.toLowerCase().replaceAll(" ", "-");
+  if (posts) {
+    for (let i = 0; i < posts.length; i++) {
+      const post = posts[i];
+      if (post.slug === slug) {
+        return slug + "-1";
+      }
+    }
+  }
+  return slug;
 }
 
 // 🏆 Snack 3
@@ -118,6 +127,11 @@ function removePost(posts, id) {
 
 // 📌 Nota:
 // Gli errori devono essere chiari e distinti, es. "Slug già esistente" e “Id già esistente”.
+
+// 🎯 Snack 10 (Bonus): createSlug() – Incrementare lo slug se esiste già
+// Creare un test che verifichi la seguente descrizione:
+
+// 👉 "Se viene passato un array di post come secondo argomento, la funzione createSlug incrementa di 1 se lo slug esiste già."
 
 module.exports = {
   getInitials,
