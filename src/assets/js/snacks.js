@@ -73,7 +73,7 @@ function findPostById(posts, id) {
   if (isNaN(id)) {
     throw new Error(`${id} non è un id`);
   }
-  posts.array.forEach((p) => {
+  posts.forEach((p) => {
     if (p.id === undefined || p.title === undefined || p.slug === undefined) {
       throw new Error(
         `Errore di ricerca! L'array posts non è nel formsto corretto`
@@ -83,10 +83,32 @@ function findPostById(posts, id) {
   return posts.find((p) => p.id === id) || null;
 }
 
+// 🏆 Challenge: describe() - organizzazione dei test
+// Organizza i test in describe() raggruppandoli per argomento.
+
+// 🎯 Snack 8 (Bonus)
+// Creare due test che verifichino le seguenti descrizioni:
+// 👉 "Dopo aver aggiunto un post con la funzione addPost, l'array posts deve contenere un elemento in più."
+// 👉 "Dopo aver rimosso un post con la funzione removePost, l'array posts deve contenere un elemento in meno."
+
+// 📌 Note:
+// Si consiglia di resettare l'array di post dopo ogni test. Ti ricordi come si fa?
+
+function addPost(posts, post) {
+  posts.push(post);
+}
+
+function removePost(posts, id) {
+  const index = posts.findIndex((p) => p.id === id);
+  posts.splice(index, 1);
+}
+
 module.exports = {
   getInitials,
   createSlug,
   average,
   isPalindrome,
   findPostById,
+  addPost,
+  removePost,
 };

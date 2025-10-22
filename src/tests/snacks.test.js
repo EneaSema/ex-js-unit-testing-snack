@@ -4,6 +4,8 @@ const {
   average,
   isPalindrome,
   findPostById,
+  addPost,
+  removePost,
 } = require("../assets/js/snacks.js");
 
 // 🏆 Snack 1
@@ -68,8 +70,10 @@ test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido
 // Creare un test che verifichi le seguenti descrizioni:
 // 👉 "La funzione findPostById restituisce il post corretto dato l’array di post e l’id"
 
-test(`La funzione findPostById restituisce il post corretto dato l’array di post e l’id`, () => {
-  const posts = [
+let posts;
+
+beforeEach(() => {
+  posts = [
     {
       id: 0,
       title: "title10",
@@ -86,16 +90,45 @@ test(`La funzione findPostById restituisce il post corretto dato l’array di po
       slug: "slug 3",
     },
   ];
+});
+
+// afetrEach(()=>{
+//   posts =[]
+// })
+//  non serve per esercizio
+
+test(`La funzione findPostById restituisce il post corretto dato l’array di post e l’id`, () => {
   expect(findPostById(posts, 1)).toEqual({
     id: 1,
     title: "title 20",
     slug: "slug-2",
   });
   expect(() => findPostById(posts, `ciao`)).toThrow(
-    `Errore di ricerca! La parola "ciao" non è un id valido`
+    `Errore di ricerca! L'array posts non è nel formsto corretto`
   );
   expect(() => findPostById([6, 9], `ciao`)).toThrow(
     `Errore di ricerca! L'array posts non è nel formsto corretto`
   );
   expect(findPostById(posts, 4)).toBe(null);
+});
+
+// 🏆 Challenge: describe() - organizzazione dei test
+// Organizza i test in describe() raggruppandoli per argomento.
+
+// 🎯 Snack 8 (Bonus)
+// Creare due test che verifichino le seguenti descrizioni:
+// 👉 "Dopo aver aggiunto un post con la funzione addPost, l'array posts deve contenere un elemento in più."
+// 👉 "Dopo aver rimosso un post con la funzione removePost, l'array posts deve contenere un elemento in meno."
+
+// 📌 Note:
+// Si consiglia di resettare l'array di post dopo ogni test. Ti ricordi come si fa?
+
+test("Dopo aver aggiunto un post con la funzione addPost, l'array posts deve contenere un elemento in più.", () => {
+  addPost(posts, { id: 3, title: "ABC", slug: "abcdef" });
+  expect(posts).toHaveLength(4);
+});
+
+test("Dopo aver rimosso un post con la funzione removePost, l'array posts deve contenere un elemento in meno.", () => {
+  removePost(posts, 2);
+  expect(posts).toHaveLength(2);
 });
