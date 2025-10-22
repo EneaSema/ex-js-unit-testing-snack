@@ -103,11 +103,9 @@ test(`La funzione findPostById restituisce il post corretto dato l’array di po
     title: "title 20",
     slug: "slug-2",
   });
-  expect(() => findPostById(posts, `ciao`)).toThrow(
-    `Errore di ricerca! L'array posts non è nel formsto corretto`
-  );
-  expect(() => findPostById([6, 9], `ciao`)).toThrow(
-    `Errore di ricerca! L'array posts non è nel formsto corretto`
+  expect(() => findPostById(posts, `ciao`)).toThrow(`ciao non è un id`);
+  expect(() => findPostById([6, 9], 1)).toThrow(
+    `Errore di ricerca! L'array posts non è nel formato corretto`
   );
   expect(findPostById(posts, 4)).toBe(null);
 });

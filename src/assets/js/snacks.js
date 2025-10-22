@@ -76,7 +76,7 @@ function findPostById(posts, id) {
   posts.forEach((p) => {
     if (p.id === undefined || p.title === undefined || p.slug === undefined) {
       throw new Error(
-        `Errore di ricerca! L'array posts non è nel formsto corretto`
+        `Errore di ricerca! L'array posts non è nel formato corretto`
       );
     }
   });
